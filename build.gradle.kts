@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "2.7.17"
-	id("io.spring.dependency-management") version "1.0.15.RELEASE"
+	id("org.springframework.boot") version "3.1.5"
+	id("io.spring.dependency-management") version "1.1.3"
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
 }
@@ -18,14 +18,16 @@ repositories {
 	mavenCentral()
 }
 
-extra["springCloudVersion"] = "2021.0.8"
-
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
+
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+	implementation("io.micrometer:micrometer-tracing-bridge-brave")
+	implementation("io.zipkin.reporter2:zipkin-reporter-brave")
+
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
 	implementation("org.springframework.boot:spring-boot-starter-log4j2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
@@ -35,12 +37,6 @@ configurations {
 		exclude(module = "logback-classic")
 		exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
 		exclude(group = "org.slf4j", module = "slf4j-log4j12")
-	}
-}
-
-dependencyManagement {
-	imports {
-		mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
 	}
 }
 

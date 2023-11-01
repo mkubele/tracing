@@ -2,7 +2,7 @@
 <Configuration status="WARN" monitorInterval="30" packages="org.apache.logging.log4j.core,io.sentry.log4j2">
     <Properties>
         <Property name="LOG_PATTERN">
-            %d{yyyy-MM-dd HH:mm:ss.SSSZ} [level=%-5level][%X] %5p ${hostName} --- [%15.15t] %c : %m%n%ex
+            %d{yyyy-MM-dd HH:mm:ss.SSSZ} [level=%-5level][%X{traceId},%X{spanId}] %5p ${hostName} --- [%15.15t] %c : %m%n%ex
         </Property>
     </Properties>
     <Appenders>
