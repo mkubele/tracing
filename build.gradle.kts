@@ -26,6 +26,7 @@ dependencies {
 
 	implementation("io.micrometer:micrometer-tracing-bridge-brave")
 	implementation("io.zipkin.reporter2:zipkin-reporter-brave")
+	implementation("io.github.openfeign:feign-micrometer:12.5")
 
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.boot:spring-boot-starter-log4j2")
