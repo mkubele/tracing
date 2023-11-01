@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30" packages="org.apache.logging.log4j.core,io.sentry.log4j2">
+    <Properties>
+        <Property name="LOG_PATTERN">
+            %d{yyyy-MM-dd HH:mm:ss.SSSZ} [level=%-5level][%X] %5p ${hostName} --- [%15.15t] %c : %m%n%ex
+        </Property>
+    </Properties>
+    <Appenders>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="${env:LOG_ROOT_LEVEL:-info}">
+            <Appender-ref ref="ConsoleAppender"/>
+        </Root>
+        <logger name="cz" level="${env:LOG_CZ_LEVEL:-debug}"/>
+        <logger name="reactor.Mono.LiftFuseable" level="WARN"/>
+    </Loggers>
+</Configuration>
